@@ -45,7 +45,7 @@ genome_count = 1
 
 
 while True:
-    clock.tick(30) # Lock on 30 FPS
+    clock.tick(100) # Lock on 100 FPS
 
     for event in pygame.event.get():
         if event.type == QUIT:
@@ -72,17 +72,28 @@ while True:
     my_ball.rect.y += my_ball.speed
     if (my_ball.rect.x <= 0) or (my_ball.rect.x >= WINDOW_WIDTH - my_ball.rect.w):
         my_ball.drop_direction *= -1
+    if my_ball.rect.y <= 0:
+        my_ball.speed *= -1
 
     # Check collisions
     if my_ball.rect.colliderect(ai_player.rect):
+        # This fix the bug on lateral collision
+        while (my_ball.rect.y + ai_player.rect.h) >= ai_player.rect.y:
+            my_ball.rect.y -= 1
+
         score += 1
-        del my_ball
-        my_ball = Ball(random.randint(100, 600), 0)
+        my_ball.speed *= -1
+        if my_ball.drop_direction < 0:
+            my_ball.drop_direction = random.randint(-10, -1)
+        elif my_ball.drop_direction > 0:
+            my_ball.drop_direction = random.randint(1, 10)
+        else:
+            my_ball.drop_direction = random.randint(-10, 10)
 
     # Check game over
     if my_ball.rect.y >= WINDOW_HEIGHT:
         del my_ball
-        my_ball = Ball(random.randint(100, 600), 0)
+        my_ball = Ball(random.randint(100, 600), 1)
 
         if score > score_record:
             best_genome_input_weights = copy.deepcopy(neural_network.input_weights)
