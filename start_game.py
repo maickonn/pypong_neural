@@ -70,9 +70,17 @@ while True:
     # Ball movements
     my_ball.rect.x += my_ball.drop_direction
     my_ball.rect.y += my_ball.speed
-    if (my_ball.rect.x <= 0) or (my_ball.rect.x >= WINDOW_WIDTH - my_ball.rect.w):
+    if my_ball.rect.x <= 0:
+        while my_ball.rect.x <= 0: # This prevent the ball exceed borders
+            my_ball.rect.x += 1
         my_ball.drop_direction *= -1
-    if my_ball.rect.y <= 0:
+    elif my_ball.rect.x >= WINDOW_WIDTH - my_ball.rect.w:
+        while my_ball.rect.x >= WINDOW_WIDTH - my_ball.rect.w:
+            my_ball.rect.x -= 1
+        my_ball.drop_direction *= -1
+    elif my_ball.rect.y <= 0:
+        while my_ball.rect.y <= 0:
+            my_ball.rect.y += 1
         my_ball.speed *= -1
 
     # Check collisions
