@@ -15,7 +15,7 @@ from utils.neural_network import NeuralNetwork
 # Constants
 WINDOW_WIDTH = 700
 WINDOW_HEIGHT = 600
-MAX_RANDOM_GENOME = 5
+MAX_RANDOM_GENOME = 50
 
 # Initialization
 pygame.init()
