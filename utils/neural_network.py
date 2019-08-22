@@ -47,8 +47,8 @@ class NeuralNetwork:
 
     def make_mutation(self):
         # Modify randomly some weights
-        for i in range(random.randint(0, 9)):
-            weight_index = random.randint(0, 9)
+        for i in range(random.randint(1, 9)):
+            weight_index = random.randint(1, 9)
             if weight_index <= 3:
                 self.input_weights[0][weight_index - 1] = random.uniform(-1, 1)
             elif weight_index <= 6:

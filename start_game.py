@@ -109,8 +109,8 @@ while True:
             score_record = score
 
         if (genome_count >= MAX_RANDOM_GENOME) and (score_record > 0):
-            neural_network.input_weights = best_genome_input_weights
-            neural_network.hidden_weights = best_genome_hidden_weights
+            neural_network.input_weights = copy.deepcopy(best_genome_input_weights)
+            neural_network.hidden_weights = copy.deepcopy(best_genome_hidden_weights)
             neural_network.make_mutation()
             print("New mutation: " + str(neural_network.input_weights) + " - " + str(neural_network.hidden_weights))
         else:
