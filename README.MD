@@ -1,7 +1,7 @@
 Hello! First I would like to apologize for the grammar errors. HAHA :D
 
 This source is a simple example of neural network to learning play a pong similar game.
-You will need install the **pygame** and **numpy** libraries.
+You will need install the **pygame** library.
 
 For this case have only 2 generations:
 

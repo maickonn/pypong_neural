@@ -2,7 +2,7 @@
 # Special thanks the creator. <3
 
 import random
-import numpy
+import math
 
 
 # PS: The structure of this neural network is:
@@ -57,4 +57,8 @@ class NeuralNetwork:
                 self.hidden_weights[weight_index - 7] = random.uniform(-1, 1)
 
     def sigmoid(self, x):
-        return 1 / (1 + numpy.exp(-x))
+        # This try prevents overflow
+        try:
+            return 1 / (1 + math.exp(-x))
+        except:
+            return 0
